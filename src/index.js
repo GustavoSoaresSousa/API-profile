@@ -8,15 +8,16 @@ const usuarioRoutes = require('./routes/usuarioRoutes');
 class App {
   constructor() {
     this.app = express();
+    this.middleware();
     this.routes();
-    this.middlewares();
   }
+  middleware(){
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(express.json());
+  }
+  
   routes() {
     this.app.use('/usuarios/', usuarioRoutes);
-  }
-  middlewares() {
-    this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(express.json())
   }
 }
 
